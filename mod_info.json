@@ -2,10 +2,9 @@
   "id":"zz - blueprint raid tweaks",
   "name":"zz - blueprint raid tweaks",
   "author":"5Head",
-  "version":"1.0",
+  "version":"1.0.0",
   "description":"class tweaks",
   "gameVersion":"0.95a-RC15",
-  "suppressVCUnsupported":true,
   "jars":["jars/clatweakes.jar"],
   "modPlugin": "data.scripts.plugins.BPRAIDPLUGIN"
 }
