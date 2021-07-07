@@ -85,11 +85,13 @@ public class BlueprintGroundRaidObjectivePluginImplMOD extends BaseGroundRaidObj
 
     public Pair<Integer, Integer> getQuantityRange() {
         Pair<Integer, Integer> q = new Pair<Integer, Integer>();
-
-        q.one = Global.getSettings().getInt("BLUEPRINT_MIN");
-        q.two = Global.getSettings().getInt("BLUEPRINT_MAX");
-
-
+        if (bpUseScale <= 0) {
+            q.one = 0;
+            q.two = 0;
+        }else {
+            q.one = Global.getSettings().getInt("BLUEPRINT_MIN");
+            q.two = Global.getSettings().getInt("BLUEPRINT_MAX");
+        }
         return q;
     }
 

@@ -2,7 +2,7 @@
   <artifact type="jar" name="clatweakes">
     <output-path>$PROJECT_DIR$/jars</output-path>
     <root id="archive" name="clatweakes.jar">
-      <element id="module-output" name="zz - blueprint raid tweaks" />
+      <element id="module-output" name="zz_Configureable_BP_raiding" />
     </root>
   </artifact>
 </component>

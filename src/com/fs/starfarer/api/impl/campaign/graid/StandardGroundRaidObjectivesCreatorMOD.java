@@ -55,7 +55,7 @@ public class StandardGroundRaidObjectivesCreatorMOD implements GroundRaidObjecti
 //				objectives.add(credits);
 //			}
 
-            ShipWeaponsGroundRaidObjectivePluginImpl weapons = new ShipWeaponsGroundRaidObjectivePluginImpl(market);
+            ShipWeaponsGroundRaidObjectivePluginImplMOD weapons = new ShipWeaponsGroundRaidObjectivePluginImplMOD(market);
             if (weapons.getQuantity(1) > 0) {
                 objectives.add(weapons);
             }
