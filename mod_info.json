@@ -4,7 +4,7 @@
   "author":"5Head",
   "version":"1.1.0",
   "description":"class tweaks",
-  "gameVersion":"0.95a-RC15",
+  "gameVersion":"0.95.1a-RC5",
   "jars":["jars/clatweakes.jar"],
   "modPlugin": "data.scripts.plugins.BPRAIDPLUGIN"
 }
