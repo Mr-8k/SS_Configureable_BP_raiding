@@ -5,10 +5,10 @@ import java.util.Random;
 
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.CargoAPI;
+import com.fs.starfarer.api.campaign.CargoAPI.CargoItemType;
 import com.fs.starfarer.api.campaign.CargoStackAPI;
 import com.fs.starfarer.api.campaign.FactionAPI;
 import com.fs.starfarer.api.campaign.TextPanelAPI;
-import com.fs.starfarer.api.campaign.CargoAPI.CargoItemType;
 import com.fs.starfarer.api.campaign.econ.CommodityOnMarketAPI;
 import com.fs.starfarer.api.campaign.econ.CommoditySpecAPI;
 import com.fs.starfarer.api.campaign.econ.MarketAPI;
@@ -189,7 +189,6 @@ public class ShipWeaponsGroundRaidObjectivePluginImplMOD extends BaseGroundRaidO
         FactionAPI faction = Global.getSector().getFaction(factionId);
 
         int maxTier = 0;
-
         if (market.getSize() >= 6) {
             maxTier = 1;
         }
@@ -211,7 +210,6 @@ public class ShipWeaponsGroundRaidObjectivePluginImplMOD extends BaseGroundRaidO
         }
         if (maxTier < minTieravailable)
             maxTier = minTieravailable;
-
 
         float numSmall = 0;
         float numMedium = 0;
@@ -314,7 +312,9 @@ public class ShipWeaponsGroundRaidObjectivePluginImplMOD extends BaseGroundRaidO
 
         looted.clear();
 
-        while (weaponValue > 0) {
+        int tries = 0;
+        while (weaponValue > 0 && tries < 100) {
+            tries++;
             WeaponSpecAPI weapon = weaponSubset.pick();
             if (weapon != null) {
                 int min = 1, max = 2;
@@ -337,13 +337,16 @@ public class ShipWeaponsGroundRaidObjectivePluginImplMOD extends BaseGroundRaidO
                 } else {
                     break;
                 }
+            } else {
+                break;
             }
         }
 
         fighterValue += Math.max(0, weaponValue);
 
-
-        while (fighterValue > 0) {
+        tries = 0;
+        while (fighterValue > 0 && tries < 100) {
+            tries++;
             FighterWingSpecAPI fighter = fighterSubset.pick();
             if (fighter != null) {
                 int min = 1, max = 2;
@@ -373,13 +376,16 @@ public class ShipWeaponsGroundRaidObjectivePluginImplMOD extends BaseGroundRaidO
                 } else {
                     break;
                 }
+            } else {
+                break;
             }
         }
 
         hullmodValue += Math.max(0, fighterValue);
 
-
-        while (hullmodValue > 0) {
+        tries = 0;
+        while (hullmodValue > 0 && tries < 100) {
+            tries++;
             HullModSpecAPI mod = pickerH.pickAndRemove();
             if (mod != null) {
                 float val = mod.getBaseValue();
@@ -392,6 +398,8 @@ public class ShipWeaponsGroundRaidObjectivePluginImplMOD extends BaseGroundRaidO
                 } else {
                     break;
                 }
+            } else {
+                break;
             }
         }
 
