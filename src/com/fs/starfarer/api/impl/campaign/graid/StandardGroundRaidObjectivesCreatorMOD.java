@@ -19,8 +19,9 @@ import com.fs.starfarer.api.impl.campaign.ids.Conditions;
 import com.fs.starfarer.api.impl.campaign.ids.Industries;
 import com.fs.starfarer.api.impl.campaign.rulecmd.salvage.MarketCMD.RaidType;
 
-public class StandardGroundRaidObjectivesCreatorMOD implements GroundRaidObjectivesListener {
+public class StandardGroundRaidObjectivesCreatorMOD extends StandardGroundRaidObjectivesCreator {
 
+    @Override
     public void modifyRaidObjectives(MarketAPI market, SectorEntityToken entity, List<GroundRaidObjectivePlugin> objectives, RaidType type, int marineTokens, int priority) {
         if (priority != 0) return;
         if (market == null) return;
@@ -78,27 +79,6 @@ public class StandardGroundRaidObjectivesCreatorMOD implements GroundRaidObjecti
                 objectives.add(curr);
             }
         }
-    }
-
-    protected Map<CommodityOnMarketAPI, Float> computeRaidValuables(MarketAPI market) {
-        Map<CommodityOnMarketAPI, Float> result = new HashMap<CommodityOnMarketAPI, Float>();
-        for (CommodityOnMarketAPI com : market.getAllCommodities()) {
-            if (com.isPersonnel()) continue;
-            if (com.getCommodity().hasTag(Commodities.TAG_META)) continue;
-            if (com.getCommodity().hasTag(Commodities.TAG_NON_ECONOMIC)) continue;
-
-            int a = com.getAvailable();
-            if (a > 0) {
-                float num = BaseIndustry.getSizeMult(a) * com.getCommodity().getEconUnit() * 0.5f;
-                result.put(com, num);
-            }
-        }
-        return result;
-    }
-
-
-    public void reportRaidObjectivesAchieved(RaidResultData data, InteractionDialogAPI dialog, Map<String, MemoryAPI> memoryMap) {
-
     }
 
 }
